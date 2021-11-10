@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import { useHistory } from "react-router-dom";
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function Copyright(props) {
@@ -34,18 +35,28 @@ function Copyright(props) {
 // const theme = createTheme();
 
 export default function SignInSide() {
+  const history = useHistory();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const email = data.get("email");
+    const password = data.get("password");
+
+    if (email !== "" && password !== "") {
+      let login = { email, password };
+      // eslint-disable-next-line no-console
+      console.log({
+        email: data.get("email"),
+        password: data.get("password"),
+      });
+      sessionStorage.setItem("login", JSON.stringify(login));
+      history.push("/dashboard");
+    }
   };
 
-          // backgroundImage: "url(https://source.unsplash.com/random)",
-
+  // backgroundImage: "url(https://source.unsplash.com/random)",
 
   return (
     // <ThemeProvider theme={theme}>
@@ -56,16 +67,16 @@ export default function SignInSide() {
         xs={false}
         sm={4}
         md={7}
-        sx={{
-          backgroundImage: "url(https://source.unsplash.com/random)",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        // sx={{
+        //   backgroundImage: "url(https://source.unsplash.com/random)",
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundColor: (t) =>
+        //     t.palette.mode === "light"
+        //       ? t.palette.grey[50]
+        //       : t.palette.grey[900],
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        // }}
       />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
