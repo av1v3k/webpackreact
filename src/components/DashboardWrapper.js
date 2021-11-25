@@ -61,10 +61,6 @@ export default function DashboardWrapper() {
       .then((data) => setLoaded({ isLoading: false, data: data }));
   }, []);
 
-  React.useEffect(() => {
-
-  }, [endTime]);
-
   const { url, path } = useRouteMatch();
   return (
     <ThemeProvider theme={mdTheme}>
@@ -124,7 +120,7 @@ export default function DashboardWrapper() {
                 </Paper>
               </Grid>
 
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
                     p: 2,
@@ -132,9 +128,18 @@ export default function DashboardWrapper() {
                     flexDirection: "column",
                     height: 240,
                   }}
-                >
-                  <CountDownTimer endTime={1635902557311} />
-                </Paper>
+                ></Paper>
+              </Grid>
+
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 240,
+                  }}
+                ></Paper>
               </Grid>
             </Grid>
           </Container>
