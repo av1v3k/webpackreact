@@ -7,7 +7,9 @@
     "serve": "webpack serve --mode development",
     "build": "rm -rf ./dist && webpack --mode production",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "clear": "rimraf lib",
+    "compile": "npx babel src/components/ --ignore src/**/*.spec.js --out-dir lib"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +20,6 @@
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.3",
     "@reduxjs/toolkit": "^1.6.2",
-    "ghostscript4js": "^3.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
@@ -26,6 +27,7 @@
     "recharts": "^2.1.6"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.15.8",
     "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
@@ -38,10 +40,14 @@
     "@storybook/manager-webpack5": "^6.4.0-beta.20",
     "@storybook/react": "^6.3.12",
     "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^6.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "node-sass": "^6.0.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.3.0",
     "webpack": "^5.58.0",

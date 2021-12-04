@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  entry: ["babel-polyfill", "./src/index.js"],
   // Where files should be sent once they are bundled
   output: {
     path: path.join(__dirname, "/dist"),
@@ -11,7 +12,7 @@ module.exports = {
   devServer: {
     port: 3000,
     historyApiFallback: true,
-    open: true
+    open: true,
     // watchContentBase: true,
   },
   // Rules of how webpack will take our files, complie & bundle them for the browser
@@ -22,6 +23,9 @@ module.exports = {
         exclude: /nodeModules/,
         use: {
           loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
         },
       },
       {
